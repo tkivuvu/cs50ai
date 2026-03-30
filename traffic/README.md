@@ -1,0 +1,11 @@
+## Experimentation of Classifying Traffic Signs
+
+When working on the neural network for these experiments I used several different architectures in order to understand how the complexity of models impacts the performance on the GTSRB data. Every model tested was trained for 10 epochs using Adam optimizer and categorical cross-entropy loss.
+
+The first model I experimented with was a neural network that flattened the image input and passed it through a fully connected layer before the output layer. The performance was not good because it only achieved a test accuracy of about 5%. What was missing here was the lack of convolutional layers and thus it lost spatial structure of images, and as we learned in lecture, this can be very important when it comes to classifying images.
+
+I then tested a small cnn (convolutional neural network), this consisted of a single convolutional layer with max pooling, and a dense layer. The model performed a lot better than the first as it achieved test accuracy of around 73%. This showed me the importance of convolutional layers for detecting spatial elements such as colors, shapes etc inside images. Having said that, there still appeared to be a bit of an underfitting probably because the filters or layers were not enough to study/learn more complicated visual patterns throughout the dataset.
+
+Finally I implemented a more complex cnn; it had two convolutional layers, two pooling layers, a dense hidden layer, and dropout regularization. The test accuracy was much higher at around 97% thus having the best performance. Adding another convolutional layer is what imo allowed the network to learn more complicated patterns, adding the regularization (dropout) also allowed for overfitting to be accounted for and no one piece of data/image was overvalued.
+
+Overall, what I learned was that convolutional neural networks (CNNs) are very important when dealing with image recognition tasks because they preserve spatial relationships in image data. Increasing model complexity improved performance up to a point, but the architecture still needed dropout (regularization) in order to avoid overfitting. The final function with two convolutional layers and regularization/dropout is what kept things equitable on one hand learning capacity and on the other generalization performance.
